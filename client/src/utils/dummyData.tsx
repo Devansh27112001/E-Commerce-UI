@@ -1,6 +1,15 @@
-import { ProductDataType } from "./types";
+import {
+  Briefcase,
+  Footprints,
+  Glasses,
+  Hand,
+  Shirt,
+  ShoppingBasket,
+  Venus,
+} from "lucide-react";
+import { CategoryDataType, ProductDataType } from "./types";
 
-const data: ProductDataType[] = [
+export const productsData: ProductDataType[] = [
   {
     id: 1,
     name: "Adidas CoreFit T-Shirt",
@@ -108,5 +117,48 @@ const data: ProductDataType[] = [
     sizes: ["s", "m", "l"],
     colors: ["blue", "green"],
     images: { blue: "/products/8b.png", green: "/products/8gr.png" },
+  },
+];
+
+export const categories: CategoryDataType[] = [
+  {
+    name: "All",
+    icon: <ShoppingBasket className="w-4 h-4" />,
+    slug: "all",
+  },
+  {
+    name: "T-shirts",
+    icon: <Shirt className="w-4 h-4" />,
+    slug: "t-shirts",
+  },
+  {
+    name: "Shoes",
+    icon: <Footprints className="w-4 h-4" />,
+    slug: "shoes",
+  },
+  {
+    name: "Accessories",
+    icon: <Glasses className="w-4 h-4" />,
+    slug: "accessories",
+  },
+  {
+    name: "Bags",
+    icon: <Briefcase className="w-4 h-4" />,
+    slug: "bags",
+  },
+  {
+    name: "Dresses",
+    icon: <Venus className="w-4 h-4" />,
+    slug: "dresses",
+  },
+  {
+    name: "Jackets",
+    icon: <Shirt className="w-4 h-4" />,
+    slug: "jackets",
+  },
+  {
+    name: "Gloves",
+    icon: <Hand className="w-4 h-4" />,
+    slug: "gloves",
   },
 ];

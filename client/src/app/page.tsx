@@ -1,3 +1,4 @@
+import ProductList from "@/components/ProductList";
 import Image from "next/image";
 
 export default function Home() {
@@ -6,6 +7,7 @@ export default function Home() {
       <div className="relative aspect-[3/1] mb-4">
         <Image src={"/featured.png"} alt="featured_product" fill />
       </div>
+      <ProductList />
     </div>
   );
 }
