@@ -16,3 +16,14 @@ export interface CategoryDataType {
   icon?: React.ReactNode;
   slug: string;
 }
+
+export interface StepDataType {
+  title: string;
+  id: number;
+}
+
+export interface CartItemDataType extends ProductDataType {
+  quantity: number;
+  selectedSize: string;
+  selectedColor: string;
+}
