@@ -3,6 +3,7 @@ import CartProductsDisplay from "@/components/CartProductsDisplay";
 import PaymentForm from "@/components/PaymentForm";
 import ShippingForm from "@/components/ShippingForm";
 import { paymentSteps, tmpCartItems } from "@/utils/dummyData";
+import { shippingFormInputs } from "@/utils/types";
 import { ArrowRight } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
@@ -10,7 +11,8 @@ import { useState } from "react";
 const CartPage = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const [shippingForm, setShippingForm] = useState(null);
+  const [shippingFormState, setShippingFormState] =
+    useState<shippingFormInputs | null>(null);
 
   const activeStep = parseInt(searchParams.get("step") || "1");
   return (
@@ -50,8 +52,8 @@ const CartPage = () => {
           {activeStep === 1 ? (
             <CartProductsDisplay cartProducts={tmpCartItems} />
           ) : activeStep === 2 ? (
-            <ShippingForm />
-          ) : activeStep === 3 && shippingForm ? (
+            <ShippingForm setShippingForm={setShippingFormState} />
+          ) : activeStep === 3 && shippingFormState ? (
             <PaymentForm />
           ) : (
             <p className="font-semibold tracking-wide">
