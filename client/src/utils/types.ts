@@ -1,4 +1,5 @@
 import { ElementType, SVGProps } from "react";
+import z from "zod";
 
 export interface ProductDataType {
   id: number | string;
@@ -27,3 +28,12 @@ export interface CartItemDataType extends ProductDataType {
   selectedSize: string;
   selectedColor: string;
 }
+
+export const shippingFormSchema = z.object({
+  name: z.string().min(1, "Name is required"),
+  email: z.email().min(1, "Email is required"),
+  phone: z
+    .string()
+    .min(7, "Phone number must be between 7 and 10 digits!")
+    .max(10, "Phone number must be between 7 and 10 digits!"),
+});

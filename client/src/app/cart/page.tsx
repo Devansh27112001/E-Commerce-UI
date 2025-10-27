@@ -1,11 +1,16 @@
 "use client";
+import CartProductsDisplay from "@/components/CartProductsDisplay";
+import PaymentForm from "@/components/PaymentForm";
+import ShippingForm from "@/components/ShippingForm";
 import { paymentSteps, tmpCartItems } from "@/utils/dummyData";
 import { ArrowRight } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useState } from "react";
 
 const CartPage = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
+  const [shippingForm, setShippingForm] = useState(null);
 
   const activeStep = parseInt(searchParams.get("step") || "1");
   return (
@@ -42,11 +47,22 @@ const CartPage = () => {
       <div className="w-full flex flex-col lg:flex-row gap-8 lg:justify-between">
         {/* STEPS */}
         <div className="w-full lg:w-7/12 shadow-lg border-1 border-gray-100 p-8 rounded-lg flex flex-col gap-4">
-          STEPS
+          {activeStep === 1 ? (
+            <CartProductsDisplay cartProducts={tmpCartItems} />
+          ) : activeStep === 2 ? (
+            <ShippingForm />
+          ) : activeStep === 3 && shippingForm ? (
+            <PaymentForm />
+          ) : (
+            <p className="font-semibold tracking-wide">
+              Please fill in the shipping details in order to proceed to
+              payment.
+            </p>
+          )}
         </div>
 
         {/* DETAILS */}
-        <div className="w-full lg:w-5/12 shadow-lg border-1 border-gray-100 p-8 rounded-lg flex flex-col gap-4">
+        <div className="w-full lg:w-5/12 shadow-lg border-1 border-gray-100 p-8 rounded-lg flex flex-col gap-4 h-max">
           <h2 className="font-semibold">Cart Details</h2>
           <div className="flex flex-col gap-4">
             <div className="flex justify-between text-sm">
