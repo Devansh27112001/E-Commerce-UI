@@ -28,7 +28,7 @@ export interface CartItemDataType extends ProductDataType {
   selectedColor: string;
 }
 
-// This is the schema
+// This is the schema of shipping form
 export const shippingFormSchema = z.object({
   name: z.string().min(1, "Name is required"),
   email: z.email().min(1, "Email is required"),
@@ -44,3 +44,36 @@ export const shippingFormSchema = z.object({
 // This type represents the shape of shipping form inputs
 // It is inferred from the shippingFormSchema validation schema
 export type shippingFormInputs = z.infer<typeof shippingFormSchema>;
+
+// This is the schema of the payment form
+export const paymentFormSchema = z.object({
+  cardHolder: z.string().min(1, "Card Holder Name is required"),
+  cardNumber: z
+    .string()
+    .min(16, "Invalid card number")
+    .max(16, "Invalid card number")
+    .regex(/^\d+$/, "Invalid card number"),
+  expirationDate: z
+    .string()
+    .regex(/^(0[1-9]|1[0-2])\/\d{2}$/, "Expiration Date must be in MM/YY"),
+  cvv: z
+    .string()
+    .min(3, "Invalid CVV")
+    .max(3, "Invalid CVV")
+    .regex(/^\d+$/, "Invalid CVV"),
+});
+
+// This type represents the shape of payment form inputs
+// It is inferred from the paymentFormSchema validation schema
+export type PaymentFormInputs = z.infer<typeof paymentFormSchema>;
+
+export type CartStoreStateType = {
+  cart: CartItemDataType[];
+  hasHydrated: boolean;
+};
+
+export type CartStoreActionType = {
+  addToCart: (product: CartItemDataType) => void;
+  removeFromCart: (product: CartItemDataType) => void;
+  clearCart: () => void;
+};

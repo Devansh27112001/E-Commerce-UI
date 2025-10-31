@@ -21,6 +21,7 @@ const Filter = () => {
         id="sort"
         className="outline-none ring-1 ring-gray-200 shadow-md p-1 rounded-sm"
         onChange={(e) => handleFilter(e.target.value)}
+        defaultValue={selectedFilter || "newest"}
       >
         <option value="newest">Newest</option>
         <option value="oldest">Oldest</option>

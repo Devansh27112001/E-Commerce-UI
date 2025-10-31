@@ -1,3 +1,4 @@
+import useCartStore from "@/stores/cartStore";
 import { CartItemDataType } from "@/utils/types";
 import { Trash2 } from "lucide-react";
 import Image from "next/image";
@@ -7,11 +8,15 @@ const CartProductsDisplay = ({
 }: {
   cartProducts: CartItemDataType[];
 }) => {
+  const { removeFromCart } = useCartStore();
   return (
     <>
       {cartProducts.map((product) => (
         // SINGLE CART ITEM CONTAINER
-        <div key={product.id} className="flex items-center justify-between">
+        <div
+          key={product.id + product.selectedColor + product.selectedSize}
+          className="flex items-center justify-between"
+        >
           {/* IMAGE AND DETAILS */}
           <div className="flex gap-8">
             {/* IMAGE */}
@@ -41,7 +46,10 @@ const CartProductsDisplay = ({
             </div>
           </div>
           {/* DELETE BUTTON */}
-          <button className="size-8 rounded-full hover:bg-red-200 transition-all duration-200 bg-red-100 text-red-400 flex items-center justify-center cursor-pointer">
+          <button
+            onClick={() => removeFromCart(product)}
+            className="size-8 rounded-full hover:bg-red-200 transition-all duration-200 bg-red-100 text-red-400 flex items-center justify-center cursor-pointer"
+          >
             <Trash2 className="size-4" />
           </button>
         </div>

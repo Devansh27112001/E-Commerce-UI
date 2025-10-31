@@ -2,7 +2,8 @@
 import CartProductsDisplay from "@/components/CartProductsDisplay";
 import PaymentForm from "@/components/PaymentForm";
 import ShippingForm from "@/components/ShippingForm";
-import { paymentSteps, tmpCartItems } from "@/utils/dummyData";
+import useCartStore from "@/stores/cartStore";
+import { paymentSteps } from "@/utils/dummyData";
 import { shippingFormInputs } from "@/utils/types";
 import { ArrowRight } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -15,6 +16,8 @@ const CartPage = () => {
     useState<shippingFormInputs | null>(null);
 
   const activeStep = parseInt(searchParams.get("step") || "1");
+
+  const { cart } = useCartStore();
   return (
     <div className="flex flex-col gap-8 items-center justify-center mt-10">
       {/* TITLE */}
@@ -50,7 +53,7 @@ const CartPage = () => {
         {/* STEPS */}
         <div className="w-full lg:w-7/12 shadow-lg border-1 border-gray-100 p-8 rounded-lg flex flex-col gap-4">
           {activeStep === 1 ? (
-            <CartProductsDisplay cartProducts={tmpCartItems} />
+            <CartProductsDisplay cartProducts={cart} />
           ) : activeStep === 2 ? (
             <ShippingForm setShippingForm={setShippingFormState} />
           ) : activeStep === 3 && shippingFormState ? (
@@ -71,7 +74,7 @@ const CartPage = () => {
               <p className="text-gray-500">Subtotal</p>
               <p className="font-medium">
                 $
-                {tmpCartItems
+                {cart
                   .reduce((acc, item) => item.price * item.quantity + acc, 0)
                   .toFixed(2)}
               </p>
@@ -89,7 +92,7 @@ const CartPage = () => {
               <p className="text-gray-800 font-semibold">Total</p>
               <p className="font-medium">
                 $
-                {tmpCartItems
+                {cart
                   .reduce((acc, item) => item.price * item.quantity + acc, 0)
                   .toFixed(2)}
               </p>
