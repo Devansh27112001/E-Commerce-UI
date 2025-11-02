@@ -125,6 +125,17 @@ export const productsData: ProductDataType[] = [
   },
 ];
 
+export const tmpSingleProductData: ProductDataType & {
+  quantity: number;
+  selectedSize: string;
+  selectedColor: string;
+} = {
+  ...productsData[0],
+  quantity: 1,
+  selectedSize: "m",
+  selectedColor: "gray",
+};
+
 export const categories: CategoryDataType[] = [
   {
     name: "All",

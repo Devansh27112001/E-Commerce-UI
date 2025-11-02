@@ -40,6 +40,7 @@ const useCartStore = create<CartStoreStateType & CartStoreActionType>()(
         })),
       clearCart: () => set(() => ({ cart: [] })),
     }),
+    // This is to persist the cart state in the local storage even after refresh
     {
       name: "cart",
       storage: createJSONStorage(() => localStorage),
