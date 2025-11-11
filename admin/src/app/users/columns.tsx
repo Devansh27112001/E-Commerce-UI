@@ -54,7 +54,7 @@ export const columns: ColumnDef<User>[] = [
             src={user.avatar}
             alt={user.fullName}
             fill
-            className="object-contain rounded"
+            className="object-contain rounded-full"
           />
         </div>
       );
