@@ -37,6 +37,7 @@ import {
 
 import { Sheet, SheetTrigger } from "./ui/sheet";
 import EditUser from "./EditUser";
+import AddOrderForm from "./AddOrderForm";
 
 const items = [
   {
@@ -215,7 +216,7 @@ const AppSidebar = () => {
                         </Link>
                       </SidebarMenuButton>
                     </SheetTrigger>
-                    <EditUser />
+                    <AddOrderForm />
                   </Sheet>
                 </SidebarMenuButton>
               </SidebarMenuItem>
