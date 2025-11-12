@@ -36,8 +36,10 @@ import {
 } from "./ui/dropdown-menu";
 
 import { Sheet, SheetTrigger } from "./ui/sheet";
-import EditUser from "./EditUser";
 import AddOrderForm from "./AddOrderForm";
+import AddUserForm from "./AddUserForm";
+import AddCategoryForm from "./AddCategoryForm";
+import AddProductForm from "./AddProductForm";
 
 const items = [
   {
@@ -131,7 +133,7 @@ const AppSidebar = () => {
                         </Link>
                       </SidebarMenuButton>
                     </SheetTrigger>
-                    <EditUser />
+                    <AddProductForm />
                   </Sheet>
                 </SidebarMenuButton>
               </SidebarMenuItem>
@@ -146,7 +148,7 @@ const AppSidebar = () => {
                         </Link>
                       </SidebarMenuButton>
                     </SheetTrigger>
-                    <EditUser />
+                    <AddCategoryForm />
                   </Sheet>
                 </SidebarMenuButton>
               </SidebarMenuItem>
@@ -181,7 +183,7 @@ const AppSidebar = () => {
                         </Link>
                       </SidebarMenuButton>
                     </SheetTrigger>
-                    <EditUser />
+                    <AddUserForm />
                   </Sheet>
                 </SidebarMenuButton>
               </SidebarMenuItem>
